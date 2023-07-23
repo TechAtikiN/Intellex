@@ -21,6 +21,8 @@ import * as z from "zod"
 import Heading from "@/components/globals/Heading"
 import axios from "axios"
 import Empty from "@/components/globals/Empty"
+import UserAvatar from "@/components/globals/UserAvatar"
+import BotAvatar from "@/components/globals/BotAvatar"
 
 const ConversationPage = () => {
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
@@ -99,7 +101,14 @@ const ConversationPage = () => {
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
-              <div className="" key={index}>{message.content}</div>
+              <div
+                className={`p-8 w-full flex items-center gap-x-8 rounded-lg ${message.role === "user" ? "bg-white border border-black/10" : "bg-muted"}`}
+                key={index}
+              >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+
+                <p className="text-sm">{message.content}</p>
+              </div>
             ))}
           </div>
         </div>

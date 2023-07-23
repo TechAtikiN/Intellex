@@ -1,6 +1,7 @@
 "use client"
 // named imports
 import { HomeIcon, ChatBubbleLeftRightIcon, PhotoIcon, VideoCameraIcon, MusicalNoteIcon, CodeBracketIcon, CogIcon } from "@heroicons/react/24/outline"
+import { usePathname } from 'next/navigation'
 // default imports
 import Image from "next/image"
 import Link from "next/link"
@@ -51,6 +52,7 @@ const navLinks = [
 ]
 
 const Sidebar = () => {
+  const pathname = usePathname()
   return (
     <div className="flex flex-col space-y-4 py-4 h-full bg-gray-900 text-white">
       <div className="px-3 py-2">
@@ -58,9 +60,9 @@ const Sidebar = () => {
           <Image className="mx-auto" src="/logo.png" width={120} height={80} alt="logo" />
         </Link>
       </div>
-      <div className="flex flex-col space-y-4 mx-auto">
+      <div className="flex flex-col space-y-4 mx-10">
         {navLinks.map((link, index) => (
-          <Link className="hover:bg-slate-800 px-3 py-2 rounded-xl" href={link.href} key={link.href}
+          <Link className={`hover:bg-slate-800 px-3 py-2 rounded-xl ${link.href === pathname ? "bg-slate-800" : null}`} href={link.href} key={link.href}
           >
             <div className="flex justify-start items-center">
               <div className={`h-6 w-6 ${link.color}`}>{link.icon}</div>

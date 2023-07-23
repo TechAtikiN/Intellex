@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline"
+import { ChatBubbleLeftRightIcon, VideoCameraIcon } from "@heroicons/react/24/outline"
 import { formSchema } from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
@@ -21,8 +21,8 @@ import Heading from "@/components/globals/Heading"
 import axios from "axios"
 import Empty from "@/components/globals/Empty"
 
-const MusicPage = () => {
-  const [music, setMusic] = useState<string>()
+const VideoPage = () => {
+  const [video, setVideo] = useState<string>()
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,9 +36,10 @@ const MusicPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setMusic(undefined)
-      const response = await axios.post("/api/music", values)
-      setMusic(response.data.audio)
+      setVideo(undefined)
+      const response = await axios.post("/api/video", values)
+      setVideo(response.data[0])
+      // console.log(response.data)
       form.reset()
 
 
@@ -53,11 +54,11 @@ const MusicPage = () => {
   return (
     <div>
       <Heading
-        title="Music Generation"
-        description="Turn your prompt into songs"
-        icon={<ChatBubbleLeftRightIcon />}
-        iconColor="text-yellow-500"
-        bgColor="bg-yellow-500/10"
+        title="Video Generation"
+        description="Turn your prompt into videos"
+        icon={<VideoCameraIcon />}
+        iconColor="text-emerald-500"
+        bgColor="bg-emerald-500/10"
       />
       <div className="mx-10">
         <div className="">
@@ -76,7 +77,7 @@ const MusicPage = () => {
                       <Input
                         disabled={isLoading}
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-                        placeholder="Piano solo"
+                        placeholder="Starfish swimming in the deep blue sea"
                         {...field}
                       />
                     </FormControl>
@@ -91,13 +92,13 @@ const MusicPage = () => {
           {isLoading && (
             <Empty label="Intellex is thinking" />
           )}
-          {!music && !isLoading && (
-            <Empty label="No Music Generated" />
+          {!video && !isLoading && (
+            <Empty label="No video Generated" />
           )}
-          {music && (
-            <audio controls className="w-full mt-8">
-              <source src={music} />
-            </audio>
+          {video && (
+            <video controls className="w-full mt-8 aspect-video rounded-lg border bg-black">
+              <source src={video} />
+            </video>
           )}
         </div>
       </div>
@@ -105,4 +106,4 @@ const MusicPage = () => {
   )
 }
 
-export default MusicPage
+export default VideoPage

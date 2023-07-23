@@ -28,11 +28,11 @@ import {
 } from "@/components/ui/select"
 
 // default imports
-import * as z from "zod"
-import Heading from "@/components/globals/Heading"
-import axios from "axios"
-import Empty from "@/components/globals/Empty"
 import Image from "next/image"
+import * as z from "zod"
+import axios from "axios"
+import Heading from "@/components/globals/Heading"
+import Empty from "@/components/globals/Empty"
 
 const ImagePage = () => {
   const [images, setImages] = useState<string[]>([])

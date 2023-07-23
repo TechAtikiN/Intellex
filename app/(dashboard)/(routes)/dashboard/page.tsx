@@ -1,8 +1,8 @@
 "use client"
 // named imports
+import { useRouter } from "next/navigation"
 import { ChatBubbleLeftRightIcon, VideoCameraIcon, ArrowRightIcon, MusicalNoteIcon, PhotoIcon, CodeBracketIcon } from "@heroicons/react/24/outline"
 import { Card } from "@/components/ui/card"
-import { useRouter } from "next/navigation"
 
 const tools = [
   {
@@ -11,7 +11,6 @@ const tools = [
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
     href: "/conversation",
-    description: "Chat with the smartest AI on the planet. Ask it anything you want and it will answer you in a human-like way."
   },
   {
     label: "Music Generation",
@@ -19,7 +18,6 @@ const tools = [
     color: "text-pink-500",
     bgColor: "bg-pink-500/10",
     href: "/music",
-    description: "Generate music with the power of AI. You can generate music in any genre you want."
   },
   {
     label: "Image Generation",
@@ -27,7 +25,6 @@ const tools = [
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
     href: "/image",
-    description: "Generate images with the power of AI. You can generate images in any genre you want."
   },
   {
     label: "Video Generation",
@@ -35,7 +32,6 @@ const tools = [
     color: "text-sky-500",
     bgColor: "bg-sky-500/10",
     href: "/video",
-    description: "Generate videos with the power of AI. You can generate videos in any genre you want."
   },
   {
     label: "Code Generation",
@@ -43,10 +39,7 @@ const tools = [
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
     href: "/code",
-    description: "Generate code with the power of AI. You can generate code in any language you want."
   },
-
-
 ]
 
 const DashboardPage = () => {
@@ -72,7 +65,6 @@ const DashboardPage = () => {
                 <h3 className="text-lg text-gray-600 font-bold">{tool.label}</h3>
                 <ArrowRightIcon className="h-4 w-4 text-gray-600" />
               </div>
-              <p className="text-muted-foreground font-light md:text-sm">{tool.description}</p>
             </div>
           </Card>
         ))}

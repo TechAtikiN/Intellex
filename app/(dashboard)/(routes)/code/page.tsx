@@ -29,6 +29,7 @@ const CodePage = () => {
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
   const router = useRouter()
 
+  // Form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,6 +39,7 @@ const CodePage = () => {
 
   const isLoading = form.formState.isSubmitting
 
+  // API call to generate code
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const userMessage: ChatCompletionRequestMessage = {

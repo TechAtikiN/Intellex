@@ -63,7 +63,13 @@ const ConversationPage = () => {
 
   return (
     <div>
-      <Heading title="Conversation" description="Chat with the smartest AI on the planet." icon={<ChatBubbleLeftRightIcon />} iconColor="text-violet-500" bgColor="bg-violet-500/10" />
+      <Heading
+        title="Conversation"
+        description="Chat with the smartest AI on the planet."
+        icon={<ChatBubbleLeftRightIcon />}
+        iconColor="text-violet-500"
+        bgColor="bg-violet-500/10"
+      />
       <div className="mx-10">
         <div className="">
           <Form {...form}>

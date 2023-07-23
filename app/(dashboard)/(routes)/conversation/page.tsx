@@ -1,9 +1,13 @@
 "use client"
 // named imports
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline"
 import { formSchema } from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { ChatCompletionRequestMessage } from "openai"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -15,9 +19,13 @@ import { Input } from "@/components/ui/input"
 // default imports
 import * as z from "zod"
 import Heading from "@/components/globals/Heading"
-import { Button } from "@/components/ui/button"
+import axios from "axios"
+import Empty from "@/components/globals/Empty"
 
 const ConversationPage = () => {
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,7 +36,27 @@ const ConversationPage = () => {
   const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    try {
+      const userMessage: ChatCompletionRequestMessage = {
+        role: "user",
+        content: values.prompt,
+      }
+      const newMessages = [...messages, userMessage]
+
+      const response = await axios.post("/api/conversation", {
+        messages: newMessages
+      })
+      // console.log(response.data)
+      setMessages((current) => [...current, userMessage, response.data])
+      form.reset()
+
+
+    } catch (error) {
+      // TODO: Open pro modal 
+      console.log(error)
+    } finally {
+      router.refresh()
+    }
   }
 
   return (
@@ -62,7 +90,19 @@ const ConversationPage = () => {
             </form>
           </Form>
         </div>
-        <div className="space-y-4 mt-4">Messages Content</div>
+        <div className="space-y-4 mt-4">
+          {isLoading && (
+            <Empty label="Intellex is thinking" />
+          )}
+          {messages.length === 0 && !isLoading && (
+            <Empty label="No Conversation Started" />
+          )}
+          <div className="flex flex-col-reverse gap-y-4">
+            {messages.map((message, index) => (
+              <div className="" key={index}>{message.content}</div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

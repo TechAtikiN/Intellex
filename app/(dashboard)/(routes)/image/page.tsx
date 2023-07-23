@@ -3,10 +3,11 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { PhotoIcon } from "@heroicons/react/24/outline"
+import { PhotoIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Card, CardFooter } from "@/components/ui/card"
 import {
   formSchema,
   amountOptions,
@@ -31,11 +32,13 @@ import * as z from "zod"
 import Heading from "@/components/globals/Heading"
 import axios from "axios"
 import Empty from "@/components/globals/Empty"
+import Image from "next/image"
 
 const ImagePage = () => {
   const [images, setImages] = useState<string[]>([])
   const router = useRouter()
 
+  // Form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,6 +50,7 @@ const ImagePage = () => {
 
   const isLoading = form.formState.isSubmitting
 
+  // API call to /api/image
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setImages([])
@@ -162,7 +166,28 @@ const ImagePage = () => {
           {images.length === 0 && !isLoading && (
             <Empty label="No images generated" />
           )}
-          <div>Images will be rendered here</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+            {images.map((src) => (
+              <Card
+                key={src}
+                className="rounded-lg overflow-hidden"
+              >
+                <div className="relative aspect-square">
+                  <Image src={src} alt="Image" fill />
+                </div>
+                <CardFooter className="p-2">
+                  <Button
+                    onClick={() => window.open(src)}
+                    variant="secondary"
+                    className="w-full"
+                  >
+                    <ArrowDownTrayIcon className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>

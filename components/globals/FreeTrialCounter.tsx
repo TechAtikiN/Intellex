@@ -5,12 +5,14 @@ import { Card, CardContent } from '@/components/ui/card'
 import { BoltIcon } from '@heroicons/react/24/outline'
 import { Progress } from '@/components/ui/progress'
 import { Button } from '@/components/ui/button'
+import { useProModal } from '@/hooks/useProModal'
 
 interface Props {
   apiLimitCount: number | undefined
 }
 
 const FreeTrialCounter = ({ apiLimitCount }: Props) => {
+  const proModal = useProModal()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const FreeTrialCounter = ({ apiLimitCount }: Props) => {
               value={(apiLimitCount! / MAX_FREE_COUNTS) * 100}
             />
           </div>
-          <Button variant={'premium'} className='w-full'>
+          <Button onClick={proModal.onOpen} variant={'premium'} className='w-full'>
             Upgrade <BoltIcon className='h-5 w-5 fill-white' />
           </Button>
         </CardContent>

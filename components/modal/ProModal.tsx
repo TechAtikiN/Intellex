@@ -8,9 +8,25 @@ import { Card } from '@/components/ui/card'
 import { tools } from '@/constants'
 import { BoltIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { Button } from '../ui/button'
+import { useState } from 'react'
+// default imports
+import axios from 'axios'
 
 const ProModal = () => {
   const proModal = useProModal()
+  const [loading, setLoading] = useState(false)
+
+  const onSubscribe = async () => {
+    try {
+      setLoading(true)
+      const response = await axios.get('/api/stripe')
+      window.location.href = response.data.url
+    } catch (error) {
+      console.log(error, 'STRIPE ERROR')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
@@ -41,6 +57,7 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            onClick={onSubscribe}
             size='lg'
             variant='premium'
             className='w-full font-semibold'

@@ -1,13 +1,17 @@
-"use client"
+'use client'
 // named imports
-import { useEffect, useState } from "react"
-import { Menu } from "lucide-react"
-import { Button } from "../ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useEffect, useState } from 'react'
+import { Menu } from 'lucide-react'
+import { Button } from '../ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 // default imports
-import Sidebar from "./Sidebar"
+import Sidebar from './Sidebar'
 
-const MobileSidebar = () => {
+interface MobileSidebarProps {
+  apiLimitCount: number | undefined
+}
+
+const MobileSidebar = ({ apiLimitCount }: MobileSidebarProps) => {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -20,12 +24,12 @@ const MobileSidebar = () => {
     <div>
       <Sheet>
         <SheetTrigger>
-          <Button variant="ghost" className="md:hidden">
+          <Button variant='ghost' className='md:hidden'>
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="p-0">
-          <Sidebar />
+        <SheetContent side='left' className='p-0'>
+          <Sidebar apiLimitCount={apiLimitCount} />
         </SheetContent>
       </Sheet>
     </div>

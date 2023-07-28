@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useProModal } from '@/hooks/useProModal'
+import { toast } from 'react-hot-toast'
 
 // default imports
 import * as z from 'zod'
@@ -56,11 +57,12 @@ const CodePage = () => {
       // console.log(response.data)
       setMessages((current) => [...current, userMessage, response.data])
       form.reset()
-
-
-    } catch (error: any) {
+    }
+    catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen()
+      } else {
+        toast.error('Something went wrong')
       }
       console.log(error)
     } finally {

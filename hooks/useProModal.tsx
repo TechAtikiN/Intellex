@@ -1,4 +1,4 @@
-// default imports
+// name imports
 import { create } from 'zustand'
 
 interface useProMOdalStore {

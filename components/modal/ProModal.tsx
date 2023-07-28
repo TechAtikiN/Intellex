@@ -1,6 +1,12 @@
 'use client'
 // named imports
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader
+} from '@/components/ui/dialog'
 import { useProModal } from '@/hooks/useProModal'
 import { DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
@@ -9,6 +15,8 @@ import { tools } from '@/constants'
 import { BoltIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { Button } from '../ui/button'
 import { useState } from 'react'
+import { toast } from 'react-hot-toast'
+
 // default imports
 import axios from 'axios'
 
@@ -22,7 +30,7 @@ const ProModal = () => {
       const response = await axios.get('/api/stripe')
       window.location.href = response.data.url
     } catch (error) {
-      console.log(error, 'STRIPE ERROR')
+      toast.error('Something went wrong')
     } finally {
       setLoading(false)
     }

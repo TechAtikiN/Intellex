@@ -27,6 +27,7 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { useProModal } from '@/hooks/useProModal'
+import { toast } from 'react-hot-toast'
 
 // default imports
 import Image from 'next/image'
@@ -65,6 +66,8 @@ const ImagePage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen()
+      } else {
+        toast.error('Something went wrong')
       }
       console.log(error)
     } finally {

@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import BotAvatar from '@/components/globals/BotAvatar'
+import { toast } from 'react-hot-toast'
+import { useProModal } from '@/hooks/useProModal'
 
 // default imports
 import * as z from 'zod'
@@ -23,7 +25,6 @@ import Heading from '@/components/globals/Heading'
 import axios from 'axios'
 import Empty from '@/components/globals/Empty'
 import UserAvatar from '@/components/globals/UserAvatar'
-import { useProModal } from '@/hooks/useProModal'
 
 const ConversationPage = () => {
   const proModal = useProModal()
@@ -57,6 +58,8 @@ const ConversationPage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen()
+      } else {
+        toast.error('Something went wrong')
       }
 
     } finally {

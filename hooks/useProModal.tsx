@@ -1,5 +1,5 @@
 // default imports
-import create from 'zustand'
+import { create } from 'zustand'
 
 interface useProMOdalStore {
   isOpen: boolean

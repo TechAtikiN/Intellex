@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/button'
 import { useProModal } from '@/hooks/useProModal'
 
 interface Props {
-  apiLimitCount: number | undefined
+  apiLimitCount: number | undefined,
+  isPro: boolean
 }
 
-const FreeTrialCounter = ({ apiLimitCount }: Props) => {
+const FreeTrialCounter = ({ apiLimitCount, isPro = false }: Props) => {
   const proModal = useProModal()
   const [mounted, setMounted] = useState(false)
 
@@ -20,6 +21,8 @@ const FreeTrialCounter = ({ apiLimitCount }: Props) => {
   }, [])
 
   if (!mounted) return null
+
+  if (isPro) return null
 
   return (
     <div className='px-3'>

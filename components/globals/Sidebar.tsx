@@ -54,9 +54,10 @@ const navLinks = [
 
 interface SidebarProps {
   apiLimitCount: number | undefined
+  isPro: boolean
 }
 
-const Sidebar = ({ apiLimitCount }: SidebarProps) => {
+const Sidebar = ({ apiLimitCount, isPro = false }: SidebarProps) => {
   const pathname = usePathname()
 
   return (
@@ -77,7 +78,7 @@ const Sidebar = ({ apiLimitCount }: SidebarProps) => {
           </Link>
         ))}
       </div>
-      <FreeTrialCounter apiLimitCount={apiLimitCount} />
+      <FreeTrialCounter isPro={isPro} apiLimitCount={apiLimitCount} />
     </div>
   )
 }

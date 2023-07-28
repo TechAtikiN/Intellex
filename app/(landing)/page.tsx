@@ -1,18 +1,11 @@
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import LandingHero from '@/components/landing-page/LandingHero'
+import LandingNavbar from '@/components/landing-page/LandingNavbar'
 
 const LandingPage = () => {
   return (
     <div>
-      <h1>Landing Page</h1>
-      <div>
-        <Link href="/sign-in">
-          <Button>Sign In</Button>
-        </Link>
-        <Link href="/sign-up">
-          <Button>Register</Button>
-        </Link>
-      </div>
+      <LandingNavbar />
+      <LandingHero />
     </div>
   )
 }

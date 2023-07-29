@@ -1,34 +1,107 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# INTELLEX🔮
 
-## Getting Started
+### What is **Intellex**?
 
-First, run the development server:
+With Intelllex, you can effortlessly generate images, code snippets, videos, music, and have conversation with it.Itleverages the powerful OpenAI API and Replicate.ai to deliver cutting-edge AI capabilities.✨
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Key Features🚀
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [x] **Conversation** - Have a conversation with Intelllex!.
+- [x] **Image Generation** - Generate images of any idea that you have!.
+- [x] **Video Generation** - Turn your prompt into a video!.
+- [x] **Music Generation** - Generate music of any kind, just prompt to Intellex.
+- [x] **Code Generation** - Generate code snippets tailored to your specific needs and preferences
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Tools and Techs🛠️
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<details>
+<summary>Frontend🚀</summary>
 
-## Learn More
+- Next.js v13
+- Tailwind CSS
+- Crisp Chat
+- Typescript
+- Shadcn/ui
+</details>
 
-To learn more about Next.js, take a look at the following resources:
+<details>
+<summary>APIs🌐</summary>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Stripe Payments
+- OpenAI API
+- Replicate.ai
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+</details>
 
-## Deploy on Vercel
+<details>
+<summary>Authentication and DB🚀</summary>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clerk Authentication
+- MySQL
+- Prisma ORM
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+</details>
+
+### Dashboard Views
+
+<details>
+
+<summary>Dashboard</summary>
+
+![dashboard-view](../intellex/assets/dashboard.png)
+
+![Modal-view](../intellex/assets/pro-modal.png)
+
+![Crisp-Customer-Support-view](../intellex/assets/crisp.png)
+
+</details>
+
+<details>
+
+<summary>Conversation</summary>
+
+![Conversation-view](../intellex/assets/conversation.png)
+
+</details>
+
+<details>
+
+<summary>Code Generation</summary>
+
+![Code-view](../intellex/assets/code.png)
+
+</details>
+
+<details>
+
+<summary>Image Generation</summary>
+
+![Image-view](../intellex/assets/photo.png)
+
+</details>
+
+<details>
+
+<summary>Video Generation</summary>
+
+![Video-view](../intellex/assets/video.png)
+
+</details>
+
+<details>
+
+<summary>Music Generation</summary>
+
+![Music-view](../intellex/assets/music.png)
+
+</details>
+
+<details>
+
+<summary>Stripe</summary>
+
+![Stripe billing](../intellex/assets/stripe-billing.png)
+
+![Stripe billing](../intellex/assets/stripe-checkout.png)
+
+</details>
